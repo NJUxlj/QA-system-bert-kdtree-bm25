@@ -1,4 +1,5 @@
 from transformers import BertModel, BertTokenizer
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
 import torch.nn as nn
 from config import Config
@@ -142,8 +143,67 @@ class BertTextRCNNMLP(nn.Module):
         return proba  
 
 
+class QwenMLP(nn.Module):
+    def __init__(self, qwen_model_path, labels_count, hidden_dim=1024, mlp_dim=256, dropout=0.1):
+        super(QwenMLP, self).__init__()
+        
+        # qwen hidden_size = 1024
+        self.qwen = AutoModelForSequenceClassification.from_pretrained(qwen_model_path) 
+        
+    
+        self.mlp = nn.Sequential(
+            nn.Linear(hidden_dim, mlp_dim),
+            nn.ReLU(),
+            nn.Linear(mlp_dim, mlp_dim),
+            nn.ReLU(),
+            nn.Linear(mlp_dim, labels_count)
+        )
+        
+        self.softmax = nn.Softmax(dim=1)
+    
+    
+    def forward(self, input):
+        sequence_output, _ = self.qwen(input, return_dict=False)
+        output =  self.mlp(sequence_output[:, 0, :])
+        output = self.softmax(output)
+        return output
+        
+        
+    
 
 
+class BertQwenMLP(nn.Module):
+    
+    def __init__(self, bert_model_path, qwen_model_path, labels_count, hidden_dim=1024, mlp_dim=256, dropout=0.1):
+        super(BertQwenMLP, self).__init__()
+        # hidden_size = 768
+        self.bert = BertModel.from_pretrained(bert_model_path)
+        
+        self.ffn = nn.Linear(768, 1024)
+        
+        # hidden_size = 1024
+        self.qwen = AutoModelForSequenceClassification.from_pretrained(qwen_model_path) 
+
+        
+        self.mlp = nn.Sequential(
+            nn.Linear(hidden_dim, mlp_dim),
+            nn.ReLU(),
+            nn.Linear(mlp_dim, mlp_dim),
+            nn.ReLU(),
+            nn.Linear(mlp_dim, labels_count)
+        )
+        
+        self.softmax = nn.Softmax(dim=1)
+    def forward(self, input):
+        sequence_output, _ = self.bert(input, return_dict=False)
+        sequence_output = self.ffn(sequence_output)
+        sequence_output, _ = self.qwen(sequence_output, return_dict=False)
+        output =  self.mlp(sequence_output[:, 0, :])
+        output = self.softmax(output)
+        return output
+    
+    
+    
 
 def choose_optimizer(config, model):
     optimizer_type = config["optimizer"]
@@ -169,6 +229,17 @@ if __name__ == '__main__':
     print("===================================")
     
     model = BertTextRCNNMLP(Config['bert_config']['model_path'], Config['labels_count'])
+    
+    input = torch.randint(0, 1000, (10, 50))
+    logits = model(input)
+    print("logits = \n",logits)
+    
+    pred = torch.argmax(logits, dim=1)
+    print(pred)
+    
+    print("===================================")
+    
+    model2 = BertQwenMLP(Config['bert_config']['model_path'], Config['qwen_config']['model_path'], Config['labels_count'])
     
     input = torch.randint(0, 1000, (10, 50))
     logits = model(input)

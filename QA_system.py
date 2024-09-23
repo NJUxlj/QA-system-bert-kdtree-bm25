@@ -59,9 +59,21 @@ class QASystem():
     
   def load_kdtree(self):
     pass
-  def sentence_to_vector(self, sentence):
-    pass
   
+  
+  def sentence_to_vector(self, sentence):
+    vector = np.zeros(self.w2v_model.vector_size)
+    
+    count = 0
+    for word in jieba.lcut(sentence):
+      if word in self.w2v_model.wv:
+        vector += self.w2v_model.wv[word]
+        count+=1
+    vector = vector/count
+    
+    # 做L2归一化，方便等下算cosine disitance
+    vector = np.array(vector)/np.sqrt(np.sum(np.square(vector)))
+    return vector
   
   def load_know_base(self, know_base_path):
     self.target_to_questions={} # 从标准问到问题集的映射字典

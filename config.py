@@ -22,5 +22,14 @@ Config = {
         "hidden_size": 768,
         "num_layers":1,
         "dropout":0.1,
+    },
+    
+    "qwen_config":{
+        "model_path":r"D:\pre-trained-models\Qwen-0.5B-Enhanced",
+        "hidden_size": 1024,
+        "dropout":0.1,
+        "model_type": "qwen2",
+        "num_attention_heads": 16,
+        "num_hidden_layers": 24,
     }
 }

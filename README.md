@@ -1,5 +1,11 @@
 # QA-system-bert-kdtree-bm25
-一个基于FAQ知识库的问答系统，应用了多种文本匹配算法，包括：1.基于bert的表示型文本匹配模型。2.BM25匹配算法。3.KD树文本搜索算法
+一个基于FAQ知识库的问答系统，应用了多种文本匹配算法, 包括：
+1. 基于bert和qwen的表示型文本匹配模型。
+   1. Bert+TextRCNN
+   2. Qwen-0.5B
+   3. Bert+Qwen-0.5B
+2. BM25匹配算法。
+3. KD树文本搜索算法
 
 
 ## Question-Answer System 的结构
@@ -24,6 +30,8 @@
 - 用到的文本相似度预测模型
   - Bert
   - Bert+Text-RCNN+2xMLP
+  - Qwen-0.5B + MLP
+  - Bert + Qwen0.5B + MLP
 - 用到的基于深度学习的文本匹配系统
   - 表示型文本匹配系统
   - 交互型文本匹配系统
