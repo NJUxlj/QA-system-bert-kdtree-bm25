@@ -27,5 +27,16 @@ class QASystem():
 
   def load_bm25():
     pass
+  
+  
+  
+  def load_know_base(self, know_base_path):
+    pass
+  
+  
+  
+  
+  def query(self):
+    pass
 
   

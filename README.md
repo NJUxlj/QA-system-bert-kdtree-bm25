@@ -4,7 +4,12 @@
 
 ## Question-Answer System 的结构
 
-
+- 用到的文本匹配算法
+  - BM25
+  - KD-Tree
+- 用到的文本相似度预测模型
+  - Bert
+  - Bert+Text-RCNN+2xMLP
 
 ### FAQ知识库的结构
 
@@ -43,3 +48,9 @@ numpy
 - 运行QA_system.py文件
 
 
+---
+
+
+
+
+## 运行结果
