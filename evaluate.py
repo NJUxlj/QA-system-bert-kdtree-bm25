@@ -33,10 +33,26 @@ class Evaluator(object):
     
     
     def show_stats(self):
-        pass
+        correct = self.stats_dict["correct"]
+        wrong = self.stats_dict["wrong"]
+        self.logger.info("预测集合条目总量：%d" % (correct +wrong))
+        self.logger.info("预测正确条目：%d，预测错误条目：%d" % (correct, wrong))
+        self.logger.info("预测准确率：%f" % (correct / (correct + wrong)))
+        self.logger.info("--------------------")
+        return
     
     
     
     
     def write_stats(self, labels, predictions):
-        pass
+        assert len(labels) == len(predictions)
+        for label, prediction in zip(labels, predictions):
+            prediction = torch.argmax(prediction,dim=1)
+            
+            if int(label) == int(prediction):
+                self.stats_dict["correct"] += 1
+            else:
+                self.stats_dict["wrong"] += 1
+        return
+            
+        

@@ -1,8 +1,9 @@
 # 系统和模型的配置参数
 
 Config = {
-    "model_path": r"D:\pre-trained-models\bert-base-chinese",
+    "model_path": "model_output",
     "schema_path": "../data/schema.json",
+    "data_path":"../data/data.json",
     "train_data_path": "../data/train.json",
     "valid_data_path": "../data/valid.json",
     "vocab_path":"../chars.txt",
