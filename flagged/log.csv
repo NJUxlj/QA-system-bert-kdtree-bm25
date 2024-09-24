@@ -1,2 +1,3 @@
 name,output,flag,username,timestamp
 xxx,,,,2024-09-24 10:14:09.339657
+you are very nice!,"{""label"": ""LABEL_1"", ""confidences"": [{""label"": ""LABEL_1"", ""confidence"": 0.6471789479255676}]}",,,2024-09-24 13:57:25.932676

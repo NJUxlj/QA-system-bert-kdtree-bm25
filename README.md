@@ -63,6 +63,7 @@
 
 ### KD-Tree算法简介
 
+---
 
 ### 表示型文本匹配模型
 - the input sentences A ann B first go through their berts, and form 2 sentence representations, and then connnect 2 representations to 1 bug vector, and send it into a classifer to classify into label 1:match, 0: not match.
@@ -70,6 +71,7 @@
 
 ![image](https://github.com/user-attachments/assets/8d7252ed-f152-4090-bd9a-62a3de0040f2)
 
+---
 
 ### 交互型文本匹配模型
 - the sentence A and B will first go through the their word-embeddings, after getting A and B's sentence vectors, we will connnet them into 1 piece and send it into a bert model, and then go through the classifier.
@@ -82,6 +84,9 @@
 - similarity_function.py:
   -  jaccard相似度算法
   -  编辑距离相似度算法  
+ 
+
+---
 
 ## Requirements
 ```shell
