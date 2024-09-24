@@ -65,10 +65,15 @@
 
 
 ### 表示型文本匹配模型
+- the input sentences A ann B first go through their berts, and form 2 sentence representations, and then connnect 2 representations to 1 bug vector, and send it into a classifer to classify into label 1:match, 0: not match.
+![image](https://github.com/user-attachments/assets/9c0a2be1-6074-42ab-a5d8-f82e41f837b6)
 
+![image](https://github.com/user-attachments/assets/8d7252ed-f152-4090-bd9a-62a3de0040f2)
 
 
 ### 交互型文本匹配模型
+- the sentence A and B will first go through the their word-embeddings, after getting A and B's sentence vectors, we will connnet them into 1 piece and send it into a bert model, and then go through the classifier.
+![image](https://github.com/user-attachments/assets/4b11e102-fe4a-413b-b15f-979f6b4d21d7)
 
 
 ---
