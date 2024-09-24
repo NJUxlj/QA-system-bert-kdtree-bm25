@@ -8,6 +8,9 @@
 3. KD树文本搜索算法
 
 
+### This project is not finished yet
+
+
 ## Question-Answer System 的结构
 
 ### FAQ问题知识库
@@ -16,8 +19,8 @@
 
 
 ```python
-# 是一个json行文件
-# 每一行是一个json对象，形如：
+# faq knowledge base 是一个 json line file
+# 每一行是一个json object，形如：
 {"questions": ["宽带坏了", "网断了", "有线宽带断了", "宽带不能用了找谁", "网速太慢了", "网慢的都不能用了", "宽带出现了问题找人帮我修一下", "显示宽带连接那一直是个感叹号", "电信宽带有毛病能有人来修吗"], "target": "有限宽带障碍报修"}
 
 ```
@@ -83,6 +86,7 @@ jieba
 gensim
 torch
 transformers
+gradio
 datasets
 numpy
 ```
@@ -131,14 +135,20 @@ Config = {
 ```
 
 ## 运行项目：
-- 运行QA_system.py文件
+- run QA_system.py
 
 
 ---
 
+### Gradio配置
+```shell 
+pip install -i https://mirrors.aliyun.com/pypi/simple/ gradio
+```
 
+- 注意，运行gradio程序时，do not open web proxy !!!
+- if you do that, some func of gradio will not work
 
-
+---
 ## 运行结果
 
 ![image](https://github.com/user-attachments/assets/33f55040-3de8-4cc7-b756-a7b3c30a3c99)
