@@ -162,8 +162,10 @@ pip install -i https://mirrors.aliyun.com/pypi/simple/ gradio
 ---
 ## 运行结果
 - QA_system.py
+
 ![image](https://github.com/user-attachments/assets/33f55040-3de8-4cc7-b756-a7b3c30a3c99)
 
 - app.py
+
 ![image](https://github.com/user-attachments/assets/84114796-d18e-4497-8bd0-e62490ba7606)
 
